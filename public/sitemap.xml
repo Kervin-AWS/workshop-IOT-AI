@@ -7,83 +7,39 @@
   </url>
   
   <url>
-    <loc>/010_architecture/</loc>
+    <loc>/000_introduction/</loc>
     <lastmod>2018-10-03T10:17:52-07:00</lastmod>
   </url>
   
   <url>
-    <loc>/001_create_iot_core/</loc>
+    <loc>/001_config_pi_and_greengrass/</loc>
   </url>
   
   <url>
-    <loc>/002_create_connection_thinganduser/</loc>
+    <loc>/002_congif_gg_on_pi/</loc>
   </url>
   
   <url>
-    <loc>/003_connect_alexaandthing/</loc>
+    <loc>/003_deploy_and_test/</loc>
   </url>
   
   <url>
-    <loc>/004_connect_raspberry/</loc>
-  </url>
-  
-  <url>
-    <loc>/001_create_iot_core/020_create_simulator/</loc>
+    <loc>/001_config_pi_and_greengrass/020_config_camera/</loc>
     <lastmod>2018-10-03T10:17:52-07:00</lastmod>
   </url>
   
   <url>
-    <loc>/001_create_iot_core/030_change_policy/</loc>
+    <loc>/001_config_pi_and_greengrass/030_conifg_green_grass/</loc>
     <lastmod>2018-10-03T10:17:52-07:00</lastmod>
   </url>
   
   <url>
-    <loc>/002_create_connection_thinganduser/040_setup_cloud9/</loc>
+    <loc>/002_congif_gg_on_pi/040_setup_lambda/</loc>
     <lastmod>2018-10-03T10:17:52-07:00</lastmod>
   </url>
   
   <url>
-    <loc>/002_create_connection_thinganduser/050_connect_2_iotcore/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/002_create_connection_thinganduser/060_connect_thinganduser/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/003_connect_alexaandthing/070_create_skill/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/003_connect_alexaandthing/080_account_linking/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/003_connect_alexaandthing/090_lambda/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/003_connect_alexaandthing/100_alexa_skill_endpoint/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/003_connect_alexaandthing/101_alxea_discover_device/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/004_connect_raspberry/110_connet_raspberry/</loc>
-    <lastmod>2018-10-03T10:17:52-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/004_connect_raspberry/120_test_the_lamp/</loc>
+    <loc>/002_congif_gg_on_pi/050_setup_greengrass_group/</loc>
     <lastmod>2018-10-03T10:17:52-07:00</lastmod>
   </url>
   

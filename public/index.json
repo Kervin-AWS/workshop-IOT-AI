@@ -1,129 +1,66 @@
 [
 {
 	"uri": "/",
-	"title": "AWS 数据赋能 智能互联",
+	"title": "AWS Greengrass ML",
 	"tags": [],
 	"description": "",
-	"content": "  数据赋能 智能互联 开发者动手训练营\n本部署指南讨论了中国区IOT设备运用的架构注意事项和配置步骤。\n"
+	"content": "  Greengrass ML workshop 开发者动手训练营\n本部署指南讨论了AWS Greengrass的部署与使用。\n"
 },
 {
-	"uri": "/010_architecture/",
+	"uri": "/000_introduction/",
 	"title": "OverView",
 	"tags": [],
 	"description": "",
-	"content": "在这个实验中，您将会学习到如何使用 AWS 的服务来构建一个 Alexa-Enabled 智能灯泡。\n在这个实验中，您将会创建以下资源:\n 一个虚拟的 Alexa-Enabled 智能家居灯泡 一个用于建立用户和设备绑定关系的系统，该服务基于 AppSync, Cognito User Pool, Lambda, DynamoDB 构建 一个 Alexa 的后端服务，该服务处理来自 Alexa 的指令，同时通过 IoT Core 操作灯泡的开关状态  "
+	"content": "在这个实验中，我们将用树莓派来模拟一个 IOT 智能摄像头。\n在树莓派上部署 AWS Greengrass ，它可以从云端加载一个用于探测人体动作的模型以及用于推理的 lambda 代码，\n每秒钟生成一个推理的结果并发送到 AWS IOT 云端（Lambda程序设计为仅发送置信度高于 95%的结果）。\n"
 },
 {
-	"uri": "/001_create_iot_core/",
-	"title": "创建 IOT Core",
+	"uri": "/001_config_pi_and_greengrass/",
+	"title": "安装、配置树莓派和 Greengrass",
 	"tags": [],
 	"description": "",
-	"content": " 部署说明 本章节将逐步带领您实现AWS IOT 核心的部署。\n我们将分别从以下步骤进行部署：\n 1. 创建智能灯泡模拟器   2. 修改默认的安全策略   "
+	"content": " 部署说明 本章节将逐步带领您实现安装、配置树莓派和 Greengrass。\n我们将分别从以下步骤进行部署：\n 1. 安装摄像头   2. 安装 Greengrass 软件   "
 },
 {
-	"uri": "/002_create_connection_thinganduser/",
-	"title": "连接 IOT Core",
+	"uri": "/002_congif_gg_on_pi/",
+	"title": "在AWS IOT 上配置 Greengrass组",
 	"tags": [],
 	"description": "",
-	"content": " 部署说明 本章节将逐步带领您实现AWS IOT 核心的部署。\n我们将分别从以下步骤进行部署：\n 3. 启动Cloud9   4. 连接 IoT Core   5. 建立设备与用户绑定关系   "
+	"content": " 部署说明 接下来我们将完成在 AWS IOT 云端的配置，将云端的机器学习模型和 Lambda 推理代码部署到设备端。。\n我们将分别从以下步骤进行部署：\n 3. 创建用于边缘推理的 Lambda 函数   4. 配置Greengrass group   "
 },
 {
-	"uri": "/003_connect_alexaandthing/",
-	"title": "配置 Alexa",
+	"uri": "/003_deploy_and_test/",
+	"title": "部署与验证",
 	"tags": [],
 	"description": "",
-	"content": " 配置说明 本章节将逐步带领您实现Alexa 的配置。\n我们将分别从以下步骤进行配置：\n 6. 创建 SMART HOME SKILL   7. 在 Alexa Developer 控制台中配置 Account Linking   8. 创建并部署 ALEXA 后端 LAMBDA   9. 配置 ALEXA SKILL ENDPOINT   10. 在Alexa中查找你的设备   "
+	"content": "在Greengrass组的界面右上角，选中”操作“，”部署“，即可将刚才我们配置的所有参数、代码以及机器学习的模型部署到树莓派上，如下图所示： 验证模式是否成功部署， Lambda 是否正常运行\n在 AWS IOT console ，点击”测试“ ，并在右侧的 subscription topic 里面输入 xxxx/action (刚才你自己设定的 topic)，点击 subscript to topic。\n此时你在树莓派摄像头前可以做各种动作，比如将手机放到耳边，做打电话状。\n保持这个动作几秒钟，你就能在 Console 界面看到推理的结果。\n如下图所示： "
 },
 {
-	"uri": "/004_connect_raspberry/",
-	"title": "连接树莓派",
+	"uri": "/001_config_pi_and_greengrass/020_config_camera/",
+	"title": "1. 安装摄像头",
 	"tags": [],
 	"description": "",
-	"content": " 配置说明 本章节将逐步带领您实现树莓派的配置。\n我们将分别从以下步骤进行配置：\n 11. 将灯泡连接到树莓派的引脚上   12. 测试 SMART HOME SKILL   "
+	"content": " 安装摄像头 请将实验材料中的摄像头的数据线插入树莓派的摄像头接口中，如图所示：  注意摄像头排线的安装方向\n  SSH连接到树莓派\n请用你熟悉的 SSH 工具连接树莓派，树莓派的 IP 地址在你手头的实验提示文档上。用户名为 pi，密码为 awsworkshop。\n登录后会提示如下信息：\n 配置激活摄像头 在命令行提示符下运行：\nsudo raspi-config  您将看到以下内容：\n选择 5 Interfacing Options回车，选择 P1 Camera并回车，选择 Yes并回车以激活 camera。按 ESC 退出配置界面。\n OS 参数设置 在树莓派 OS 的命令行中运行如下命令：\nsudo adduser --system ggc_user sudo addgroup --system ggc_group cd /etc/sysctl.d sudo nano 98-rpi.conf  使用文本编辑器（nano）将以下两行添加到文件的末尾。按 control+x 退出，并输入 yes以确认保存，回车保存文件。\nfs.protected_hardlinks = 1 fs.protected_symlinks = 1  在命令行中输入命令：\nsudo nano /boot/cmdline.txt  将以下内容附加到现有行的末尾，而不是作为新行。\ncgroup_enable=memory cgroup_memory=1  现在重启 树莓派。\nsudo reboot   "
 },
 {
-	"uri": "/001_create_iot_core/020_create_simulator/",
-	"title": "1. 创建智能灯泡模拟器",
+	"uri": "/001_config_pi_and_greengrass/030_conifg_green_grass/",
+	"title": "2. 安装 Greengrass 软件",
 	"tags": [],
 	"description": "",
-	"content": "在本节中，我们会创建Iot事物、证书以及安全策略。\n注意：请选择宁夏Region\n  登陆 AWS IoT Core 控制台，显示如下。\n 在左侧导航栏中，选择 Onboard 菜单\n 在 Configuring a device 中, 点击 Getting Started 按钮\n 在 How are you connecting to AWS IoT? 页面, 选择 Linux 作为运行平台; 选择 Node.js for IoT Device SDK， 然后点击 Next\n 在 Name 字段中输入 ratchet, 点击 Next step 如果您与别人共享这个 AWS 账号，请输入一些前缀来区别您和别人创建的事物, e.g. cw_ratchet。    在 Download connection kit 页面中，点击 Linux/OSX 按钮来下载我们所需的文件。当下载完成后，点击 Next 按钮。   总结一下, 我们在之前的步骤中，创建了如下内容： - 一个 安全策略 来控制事物访问 IoT Core - 一个 Linux/OSX zip 文件，包含连接 IoT Core 所需的证书\n请不要丢失这个 ZIP 文件，它包含 private key（私有安全密钥）, 一旦遗失，无法再次获取。\n 在这个实验中，您将会创建如何资源:\n 一个虚拟的 Alexa-Enabled 智能家居灯泡 一个用于建立用户和设备绑定关系的系统，该服务基于 AppSync, Cognito User Pool, Lambda, DynamoDB 构建 一个 Alexa 的后端服务，该服务处理来自 Alexa 的指令，同时通过 IoT Core 操作灯泡的开关状态  "
+	"content": " 重新 SSH 到树莓派上，运行以下命令以安装 Greengrass ，并下载 Amazon rootCA以用于安全认证。\nwget -O /tmp/greengrass.tar.gz https://d1onfpft10uf5o.cloudfront.net/greengrass-core/downloads/1.10.2/greengrass-linux-armv7l-1.10.2.tar.gz sudo mkdir -p /greengrass sudo tar -xzvf /tmp/greengrass.tar.gz -C / rm /tmp/greengrass.tar.gz cd /greengrass/certs/ sudo wget -O root.ca.pem https://www.amazontrust.com/repository/AmazonRootCA1.pem  在 AWS IoT 上配置 AWS IoT Greengrass\n在您的计算机上登录 AWS 管理控制台 并打开AWS IoT 控制台。\n在导航窗格中，选择 Greengrass\n在 Welcome to AWS IoT Greengrass (欢迎使用 AWS IoT Greengrass) 页面上，选择 Create a Group (创建组)。\n如果出现提示，则在 Greengrass needs your permission to access other services (Greengrass 需要访问其他服务的权限) 对话框中，选择 Grant permission (授予权限) 以允许控制台为您创建或配置 Greengrass 服务角色。\n您必须使用服务角色授权 AWS IoT Greengrass 代表您访问其他 AWS 服务。否则，部署会失败。 在 Set up your Greengrass group (设置您的 Greengrass 组) 页面上，选择 Use default creation (使用默认创建方式) 以创建一个组和一个 AWS IoT Greengrass 核心。\n每个组需要一个核心，而核心是一个管理本地 IoT 进程的设备。\n核心需要一个允许它访问 AWS IoT 的证书和相应密钥以及一个允许它执行 AWS IoT 和 AWS IoT Greengrass 操作的 AWS IoT 策略。\n当您选择 Use default creation (使用默认创建方式) 选项时，这些安全资源是为您创建的，并且核心是在 AWS IoT 注册表中预配置的。\n给你的 Greengrass 组取一个名字，为了避免与其他实验者取名冲突（因为大家共享一个中国区账号），建议取 GG_ML_xxx（其中 xxx 是你自己的名字），以便识别你自己的 Greengrass 组。\n点击两次下一步，并点击创建组和核心设备，AWS IoT 使用默认安全策略创建 AWS IoT Greengrass 组并创建配置文件以加载到设备上。\n在确认页面上，在 Download and store your Core\u0026rsquo;s security resources (下载并存储您的核心的安全资源) 下，选择 Download these resources as a tar.gz (将这些资源作为一个 tar.gz 下载)。\n您下载的 tar.gz 文件的名称以 10 位哈希值开头，该哈希值也用于证书和密钥文件名。\n点击完成。\n 在树莓派上配置并运行 Greengrass\n将刚才下载的 tar.gz 文件复制到树莓派上，可以用 SCP 命令或者是远程桌面（树莓派已经预先激活了 RDP 远程桌面功能）。以下是在你自己的电脑上用 SCP 命令复制文件的示例：\ncd /directory/of/gg/configure # 刚才下载保存tar.gz 文件的目录 scp ./yyyyyyyyyy-setup.tar.gz pi@xxx.xxx.xxx.xxx:/tmp # yyyyyyyyyy-setup.tar.gz是下载的配置文件的文件名，xxx.xxx.xxx.xxx是树莓派的 IP 地址   如果提示No space left on device，可以SSH 到树莓派上执行 sudo rm -rf /tmp/*，之后再执行 scp 命令  SSH 到树莓派上，执行以下命令将 Greengrass配置文件解压到/greengrass 目录中，并启动 greengrass 守护进程：\nsudo tar -xzvf /tmp/yyyyyyyy-setup.tar.gz -C /greengrass # yyyyyyyy-setup.tar.gz是复制到树莓派的配置文件 sudo /greengrass/ggc/core/greengrassd start  您可以运行以下命令来确认 AWS IoT Greengrass Core 软件（Greengrass 守护程序）是否正常工作。将 PID-number 替换为您的 PID：\nps aux | grep PID-number  如果要设置 greengrass 在开机时自动启动，可以参考配置初始化系统以启动 Greengrass 守护程序\n如果你的 greengrass 进程启动出现问题，可以用以下命令从日志中排查相关问题：\nsudo cat /greengrass/ggc/var/log/crash.log sudo cat /greengrass/ggc/var/log/system/runtime.log   "
 },
 {
-	"uri": "/001_create_iot_core/030_change_policy/",
-	"title": "2. 修改默认的安全策略",
+	"uri": "/002_congif_gg_on_pi/040_setup_lambda/",
+	"title": "3. 创建用于边缘推理的 Lambda 函数",
 	"tags": [],
 	"description": "",
-	"content": "默认的安全策略会限制这个设备能发布的消息 topic。在这个实验中，我们将会创建一个更加开放的安全策略，以便我们能够通过APP进行连接。因此，需要先找到 之前创建的策略。\n 在 AWS IoT Core 控制台点击 Manage，它会默认选中 Things\n 找到之前步骤中创建的事物, 例如本实验中叫做 ratchet\n 选择这个事物\n 在左侧菜单栏，点击 Security\n 点击已经附加的策略，如下  点击 Policies  选择 Policy, 这个实验中，应该叫 ratchet-Policy\n 点击 Edit Policy Document\n Enter the following for your document\n{ \u0026quot;Version\u0026quot;: \u0026quot;2012-10-17\u0026quot;, \u0026quot;Statement\u0026quot;: [ { \u0026quot;Effect\u0026quot;: \u0026quot;Allow\u0026quot;, \u0026quot;Action\u0026quot;: [ \u0026quot;iot:Publish\u0026quot;, \u0026quot;iot:Subscribe\u0026quot;, \u0026quot;iot:Connect\u0026quot;, \u0026quot;iot:Receive\u0026quot; ], \u0026quot;Resource\u0026quot;: [ \u0026quot;*\u0026quot; ] } ] }  点击 Save as new version   现在，你的设备可以发布和订阅任何消息。至今，我们已经完成了三个 IoT 组件的创建: - 设备证书 - 一个安全策略 - 安全策略与设备证书与事物的关联\n"
+	"content": " 在你的电脑上点击以下链接下载 Lambda 代码：\nhttps://greengrass-ml-hands-on-lab.s3.cn-north-1.amazonaws.com.cn/HumanActionDetect.zip\n解压以后，编辑HumanActionDetect.py文件，在里面将 you/action 替换成你自己的 topic，比如 edwin/action，并保存文件。  将 lambda 代码重新打包，注意：请在 HumanActionDetect 目录中运行打包，不要在上层目录中打包。\n 在AWS IOT Greengrass console点击选中刚才创建的 Grassgrass 组，比如GG_ML_edwin：\n 在打开的 console 中点击 Lambda， 添加Lambda，新建 Lambda, 如下图所示：   在创建 Lambda 的界面进行配置，选择从头开始创作，函数名称请输入你自己定义的名字，比如 GG_ML_edwin，运行时选择 Python 3.7。点击创建函数。\n 在 Lambda 代码的编辑界面上方，点击操作，上传 zip 文件，并选择刚才打包好的 lambda函数，点击上传\n 将页面拖到下方，在基本设置中点击“编辑”按钮，将处理程序改成HumanActionDetect.function_handler并保存。\n 再在 Lambda 界面的上方点击”操作“，发布新版本，输入版本为 1，点击”发布“\n继续点击”操作“，选中”创建别名“，创建一个别名为 ”production“的 Lambda 别名，并关联版本为”1“，点击”保存“。\n  "
 },
 {
-	"uri": "/002_create_connection_thinganduser/040_setup_cloud9/",
-	"title": "3. 启动Cloud9",
+	"uri": "/002_congif_gg_on_pi/050_setup_greengrass_group/",
+	"title": "4. 配置Greengrass group",
 	"tags": [],
 	"description": "",
-	"content": " 本实验使用使用 Cloud9 开发环境，下面将引导你运用EC2创建Cloud9环境\n  启动EC2 ，新建实例：  点击Marketplace，搜索Cloud9，点击选择  选择实例类型，此处选择t3a.small:  新建并下载密钥对，此处按照要求命名   然后点击启动实例，成功后，查看实例公有IP，\n在浏览器中输入 公有IP:8181 （请关闭所有代理）\n输入用户名： aws，\n密码： 实例ID（如下图所示），进入Cloud9界面.\n"
-},
-{
-	"uri": "/002_create_connection_thinganduser/050_connect_2_iotcore/",
-	"title": "4. 连接 IoT Core",
-	"tags": [],
-	"description": "",
-	"content": " 请确认当前网络环境是否屏蔽了 8883 端口。 如果被屏蔽，可以考虑使用一个 guest network 或者 个人热点。\n  Git clone 如下代码仓库, 在 Cloud9 的 terminal 中输入\ngit clone https://github.com/Kervin-AWS/aws-alexa-workshop-smarthome-lamp-cn.git cd aws-alexa-workshop-smarthome-lamp-cn  解压之前下载的 ZIP 文件. 您将获得如下文件:\n 一个 private key, \\\u0026lt;thing-name\\\u0026gt;.private.key\n 一个 device certificate, \\\u0026lt;thing-name\\\u0026gt;.cert.pem\n  把 private key 重命名为 private.key 并且拖拽上传到 credentials 文件夹(选择替换).\n 将 device certificate 重命名为 cert.pem 并且拖拽上传到 credentials 文件夹(选择替换).\n 修改 index.js 中的配置并保存\n iotEndpoint. 在 IoT Core 控制台左侧 Settings 菜单中可以找到  thingName. 之前创建的事物名称\n deviceBindingUrl. 这个请不要修改它，本实验已经帮您配置好Amplify\n  安装依赖. 在 Cloud9 的 terminal 中运行\nnpm install  运行\nnode index.js  启动应用程序。运行成功后， terminal 将会输出一个二维码。 在下一步中，我们将使用这个二维码完成用户和设备之间的绑定关系。   "
-},
-{
-	"uri": "/002_create_connection_thinganduser/060_connect_thinganduser/",
-	"title": "5. 建立设备与用户绑定关系",
-	"tags": [],
-	"description": "",
-	"content": "在本章节中，我们会通过扫描设备二维码，来建立设备和用户之间的绑定关系。\n 确保已经完成上一步且”虚拟智能灯泡模拟器”程序正在运行。\n 使用您的 手机相机应用/支付宝 来扫描二维码\n 浏览器会被重定向到 登陆页面 ，如果您还没有账号，请创建一个账号，如已经有账号，点击登录。\n 浏览器会被重定向到 设备绑定 页面，点击 Bind 按钮  刷新页面，检查这个按钮的状态是否变成了 Unbind, 如果已经变化, 则已经绑定成功\n  "
-},
-{
-	"uri": "/003_connect_alexaandthing/070_create_skill/",
-	"title": "6. 创建 SMART HOME SKILL",
-	"tags": [],
-	"description": "",
-	"content": "在此章节中，我们将创建一个空的Alexa Skill。我们将会在下面的章节中配置它。\n 在浏览器中，打开 Alexa Skills Kit Developer Console。如果您还没有 完成认证，您需要使用您的 Amazon Developer Account 来登陆。\n 点击 Create Skill 按钮。\n 在 Skill name 处，输入 SmartLamp。\n 选择 English (US) 来作为技能的默认语言。\n 在 Choose a model to add to your skill 中选择 Smart Home model。点击此处了解Smart home model相关信息。\n 在 Choose a method to host your skill’s backend resources 中，选择 Provision your own\n 点击 Create 按钮来完成技能创建\n 完成创建后，您应该会被自动跳转到一个叫做 SmartLamp 的配置页面。在 Smart Home service endpoint 中，找到 Skill ID, 点击 Copy to clipboard 来拷贝并复制到其他地方。这个 SKill ID 会在后续的配置过程中被使用到。 现阶段，您不需要配置其他信息。\n  "
-},
-{
-	"uri": "/003_connect_alexaandthing/080_account_linking/",
-	"title": "7. 在 Alexa Developer 控制台中配置 Account Linking",
-	"tags": [],
-	"description": "",
-	"content": " 打开 Alexa Console\n 在 Skills 列表中，选择之前创建的 Skill\n 在左侧导航栏中，选择 Account Linking\n 在 Security Provider Information 下，选择 Auth Code Grant\n 在 Authorization URI 中输入 https://alexa-workshop-dev-cn01.auth.us-east-1.amazoncognito.com/oauth2/authorize\n 在 Access Token URI 中输入 https://alexa-workshop-dev-cn01.auth.us-east-1.amazoncognito.com/oauth2/token\n 在 Client ID 中输入4od0k6ioo94e29naua62fhk0tt\n 在 Client Secret 中输入mteph8cegr5v645tn4ua1ommobpcd26k9ner80c2fbudkguqgm8  点击 Add scope 并且输入 openid. 对于 Smart Home Skill, 至少需要选择一个 scope\n 其余保持默认不变，在右上角点击 Save 按钮    注意，为了简化实验，我们已经配置好了Cognito。请把Account Link最下方的三个链接给到我们，我们会在Cognito中进行设置，这样才能Link成功。\n "
-},
-{
-	"uri": "/003_connect_alexaandthing/090_lambda/",
-	"title": "8. 创建并部署 ALEXA 后端 LAMBDA",
-	"tags": [],
-	"description": "",
-	"content": " 首先，进入您的 Cloud9 环境根目录, 配置aws configure，赋予该环境您global账户的访问权限，为后面的global lambda远程部署做准备\n此步骤需要您通过输入\naws configure  来配置AKSK、Region等信息\n   在 terminal 中输入\ngit clone https://github.com/Kervin-AWS/aws-alexa-workshop-smarthome-cn.git cd aws-alexa-workshop-smarthome-cn  编辑 config.json 文件,\n您需要修改 alexaSmartHomeAppId 为您的Alexa Skills Id，\n您需要修改 iotEndpoint 为您的中国区的IOT endpoint，\n其余参数保持默认不变。\n 编辑index.js 中的AWS.IotData 初始化代码，输入自己国内账号的AKSK，注意本实验仅为实现功能，生产环境将会采用非明文的认证方式。  为了简化实验，请您编辑index.js 中的 AWS.DynamoDB.DocumentClient 初始化代码，请输入工作人员提供的共享global账号中的AKSK，注意本实验仅为实现功能，生产环境将会采用非明文的认证方式。  修改serverless.yml 里面的function名称，注意每一个IOT要用不同的名称  运行 npm install 来安装依赖， 包括开发环境的依赖\n 运行 npm config set registry https://registry.npm.taobao.org 换源\n 运行 npm install -g serverless 来安装serverless。\n 运行 sls deploy\n  部署成功后，您可以通过命令行查看部署好的一个类似于 alexa-smarthome-{stage}-backend 的 Lambda 方法，并且查看到RAN\naws lambda list-functions  "
-},
-{
-	"uri": "/003_connect_alexaandthing/100_alexa_skill_endpoint/",
-	"title": "9. 配置 ALEXA SKILL ENDPOINT",
-	"tags": [],
-	"description": "",
-	"content": "本小节，将刚才创建的 Lambda 函数与 Alexa Skill link在一起。\n 拷贝 Lambda 方法的 ARN, 在 Cloud 9 中输入\naws lambda list-functions  将下图中的ARN拷贝下来\n 打开 Alexa Developer Console, 选择创建的 Smart Home 技能\n 在 Default endpoint 黏贴拷贝的 Lambda ARN   点击右上角的 Save 按钮\n"
-},
-{
-	"uri": "/003_connect_alexaandthing/101_alxea_discover_device/",
-	"title": "10. 在Alexa中查找你的设备",
-	"tags": [],
-	"description": "",
-	"content": "本小节中，您将在Alexa中查找你的device。\n 打开Alexa 网页版客户端\n 点击左侧 Skills , 随后点击右上角的 Your Skills  点击 ALL SKILLS 找到你的skill，然后点击，进入激活页面 激活成功后, 返回到skill 页面，点击弹出的 Discover Devices 稍等片刻后，则可以看到自己的设备   "
-},
-{
-	"uri": "/004_connect_raspberry/110_connet_raspberry/",
-	"title": "11. 将灯泡连接到树莓派的引脚上",
-	"tags": [],
-	"description": "",
-	"content": " 按下图将灯泡通过母母的杜邦线连接到树莓派上： 灯泡的R极 -\u0026gt; 树莓派18引脚\n灯泡的负极-\u0026gt; 树莓派GND引脚\n将代码拉取到树莓派中  通过ssh进入树莓派  用户名： pi\n密码： awsworkshop\nssh pi@192.xxx.xxx.xx   首先拉取github树莓派端的代码\ngit clone https://github.com/Kervin-AWS/aws-alexa-workshop-raspi-cn.git  在本地terminal内进入“创建智能灯泡模拟器”步骤中下载的证书文件夹，将生成的cert.pem 、 private.key 通过scp的方式传入树莓派的aws-alexa-workshop-raspi-cn文件夹中\nscp ./cert.pem pi@xxx.xxx.xxx.xxx:/home/pi/aws-alexa-workshop-raspi-cn scp ./private.key pi@xxx.xxx.xxx.xxx:/home/pi/aws-alexa-workshop-raspi-cn   在树莓派内通过 vim 或者 nano 修改ledSwitch.py 中的awsiotHost为自己设置的IOT Endpoint  修改ledSwitch.py 中的thingName为自己设置的item name  修改完成后保存退出\n 在树莓派命令行中输入python ledSwitch.py，启动IOT脚本\npython ledSwitch.py   "
-},
-{
-	"uri": "/004_connect_raspberry/120_test_the_lamp/",
-	"title": "12. 测试 SMART HOME SKILL",
-	"tags": [],
-	"description": "",
-	"content": "至此，我们已经完成了所有Alexa Smart Home Skill的配置。现在，您可以通过语音来进行智能灯泡开关控制的测试了。 在本节中，我们还将有两个进阶挑战，可以使得您通过简单而明确的指令控制多个灯泡。\n您可以通过Alexa APP， Alexa Developer Console 或者 Echo 来进行测试。\n 打开 Alexa Developer Console, 选择您创建的技能\n 点击 Test tab, 尝试输入 turn on the \u0026lt;device-friendly-name\u0026gt;  检查树莓派的灯泡状态变化 \n 如果您没有树莓派，您可以在IOT 控制台通过设备的影子查看虚拟设备的状态切换   "
+	"content": " 回到 AWS IOT console，在刚才 greengrass 组的页面，选择“使用现有的Lambda”，选中刚才创建的 Lambda 函数（实验人数较多，请选中自己创建的那个函数）。点击”完成“。  在出现的界面中，右侧有三个点，点击一下并选中”编辑配置“。 将内存限制修改为 512MB，超时修改为 10秒，\n并将 Lambda 生命周期改为使此函数长时间生存，保持其无限期运行；对 /sys 目录的只读访问权限选中为”启用“。在环境变量中，输入 key-value 对的信息：MXNET_ENGINE_TYPE和NaiveEngine。\n最后点击”更新“。\n配置界面如下图所示：  在出现的页面中选择”资源“，然后点击添加本地资源，分别创建 4 个本地资源，以使 Lambda 函数具备访问摄像头和文件系统的权限。  创建摄像头设备资源 webcam，选项如下图所示：  创建videoCoreInterface资源，选项如下图所示：  创建videoCoreSharedMemory资源，选项如下图所示：  下载以下链接的机器学习模型（该模型由 Amazon Sagemaker训练出来的）到你的本地电脑： https://greengrass-ml-hands-on-lab.s3.cn-north-1.amazonaws.com.cn/new-human-action-model.tar.gz\n 在IOT console 界面选中Machine Learning选项，并点击”添加机器学习资源“： 资源名称输入human-action-detect-model，并选择”在 S3 中上传模型 (包括通过深度学习编译器优化的模型)“，点击上传模型。 在新打开的 S3 界面创建一个存储桶（注：如果别的实验学员已经创建好了就无需创建了，直接用别人已经上传的模型就好了）\n并且把刚才下载的机器学习模型上传，上传的时候全部采用默认值即可。\n在 IOT console 点击刷新按钮，选中刚才上传的模型文件\n在本地路径中输入/models，意为将模型下载到 Greengrass 容器的/models 路径中，点击”保存“。  检查 lambda 的资源配置。如下图所示：  点击返回箭头，并选中”订阅“，点击”添加订阅“。在本步骤中将定义消息传递的逻辑关系。\nLambda 函数通过推理产生的 IOT 消息可以被发送到 AWS IOT。\n 选择源为”Lambda“，并选中你创建的 Lambda 函数。选择目标为服务，并选中 IOT Cloud。点击”下一步“。  在主题筛选条件中，输入你在 Lambda 代码中定义的 topic，比如”xxxx/action“，点击下一步，并点击完成。  更新 service role：\n在 AWS Console 中选中 IAM ，在 roles 选项页中筛选出 Greengrass_ServiceRole ，并点击进入。\n在页面中找到 附加策略，点击后筛选出 AmazonS3ReadOnlyAccess，点击Attach policy。\n如下图所示 最后Greengrass_ServiceRole的权限如下图所示：  回到 Greengrass group 中选中我们刚才的 group ，在左侧选中 设置 ，点击右上角的添加角色，并选中Greengrass_ServiceRole，点击保存。\n这样，Greengrass 就有权限去 S3 下载你私有的机器学习模型了，如下图所示：\n  "
 },
 {
 	"uri": "/categories/",
