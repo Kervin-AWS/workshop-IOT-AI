@@ -6,7 +6,7 @@ weight: 1
 
 <div style="text-align: center"><h2></h2></div>
 
-# Greengrass ML
+# Greengrass ML workshop
 
 **开发者动手训练营**
 

@@ -7,11 +7,11 @@ weight: 20
 1. 安装摄像头
     请将实验材料中的摄像头的数据线插入树莓派的摄像头接口中，如图所示：
 
-    {{% notice warning %}}
-    注意摄像头排线的安装方向
-    {{% /notice%}}
+{{% notice warning %}}
+注意摄像头排线的安装方向
+{{% /notice%}}
 
-    ![Image](/images/png/002.png)
+![Image](/images/png/1.png)
 
 2. SSH连接到树莓派
 
@@ -19,7 +19,7 @@ weight: 20
     
     登录后会提示如下信息：
 
-    ![Image](/images/png/.png)
+    ![Image](/images/png/2.png)
 
 3. 配置激活摄像头
     在命令行提示符下运行：
@@ -30,11 +30,11 @@ weight: 20
 
     您将看到以下内容：
 
-    ![Image](/images/png/.png)
+    ![Image](/images/png/3.png)
 
     选择 5 Interfacing Options回车，选择 P1 Camera并回车，选择 Yes并回车以激活 camera。按 ESC 退出配置界面。
 
-    ![Image](/images/png/.png)
+    ![Image](/images/png/4.png)
 
 4. OS 参数设置
     在树莓派 OS 的命令行中运行如下命令：
@@ -51,7 +51,7 @@ weight: 20
     fs.protected_hardlinks = 1
     fs.protected_symlinks = 1
     ```
-    ![Image](/images/png/003.png)
+    ![Image](/images/png/5.png)
 
     在命令行中输入命令：
 

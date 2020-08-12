@@ -1,14 +1,12 @@
 ---
 title: "部署与验证"
 weight: 13
-chapter: true
+chapter: false
 draft: false
 ---
 
-# 部署 Greengrass的资源和配置到设备端并验证    
-
 在Greengrass组的界面右上角，选中”操作“，”部署“，即可将刚才我们配置的所有参数、代码以及机器学习的模型部署到树莓派上，如下图所示：
-![Image](/images/png/.png)
+![Image](/images/png/42.png)
 
 验证模式是否成功部署， Lambda 是否正常运行
 
@@ -19,4 +17,4 @@ draft: false
 保持这个动作**几秒钟**，你就能在 Console 界面看到推理的结果。
 
 如下图所示：
-![Image](/images/png/.png)
+![Image](/images/png/43.png)

@@ -26,7 +26,7 @@ weight: 30
     如果出现提示，则在 **Greengrass needs your permission to access other services (Greengrass 需要访问其他服务的权限)** 对话框中，选择 **Grant permission (授予权限)** 以允许控制台为您创建或配置 Greengrass 服务角色。
 
     您必须使用服务角色授权 AWS IoT Greengrass 代表您访问其他 AWS 服务。否则，部署会失败。
-    ![Image](/images/png/.png)
+    ![Image](/images/png/6.png)
 
     在 **Set up your Greengrass group (设置您的 Greengrass 组)** 页面上，选择 **Use default creation (使用默认创建方式)** 以创建一个组和一个 [AWS IoT Greengrass 核心](https://docs.aws.amazon.com/zh_cn/greengrass/latest/developerguide/gg-core.html)。
 
@@ -36,21 +36,21 @@ weight: 30
     
     当您选择 **Use default creation (使用默认创建方式)** 选项时，这些安全资源是为您创建的，并且核心是在 AWS IoT 注册表中预配置的。
 
-    ![Image](/images/png/.png)
+    ![Image](/images/png/7.png)
 
     给你的 Greengrass 组取一个名字，**为了避免与其他实验者取名冲突**（因为大家共享一个中国区账号），建议取 `GG_ML_xxx`（其中 xxx 是你自己的名字），以便识别你自己的 Greengrass 组。
 
-    ![Image](/images/png/.png)
+    ![Image](/images/png/8.png)
 
     **点击两次下一步**，并点击创建组和核心设备，AWS IoT 使用默认安全策略创建 AWS IoT Greengrass 组并创建配置文件以加载到设备上。
 
-    ![Image](/images/png/.png)
+    ![Image](/images/png/9.png)
 
     在确认页面上，在 **Download and store your Core's security resources (下载并存储您的核心的安全资源)** 下，选择 **Download these resources as a tar.gz (将这些资源作为一个 tar.gz 下载)**。
     
     您下载的 tar.gz 文件的名称以 10 位哈希值开头，该哈希值也用于证书和密钥文件名。
 
-    ![Image](/images/png/.png)
+    ![Image](/images/png/10.png)
 
     **点击完成。**
 
@@ -87,40 +87,3 @@ weight: 30
     sudo cat /greengrass/ggc/var/log/crash.log
     sudo cat /greengrass/ggc/var/log/system/runtime.log
     ```
-
-5.	点击已经附加的策略，如下
-    ![Image](/images/png/007.png)
-6.	点击 **Policies**
-    ![Image](/images/png/008.png)
-7.	选择 Policy, 这个实验中，应该叫 ratchet-Policy
-
-8.	点击 **Edit Policy Document**
-
-9.	Enter the following for your document
-
-```shell
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iot:Publish",
-        "iot:Subscribe",
-        "iot:Connect",
-        "iot:Receive"
-      ],
-      "Resource": [
-        "*"
-      ]
-    }
-  ]
-}
-```
-10.	点击 **Save as new version**
-    ![Image](/images/png/009.png)
-
-现在，你的设备可以发布和订阅任何消息。至今，我们已经完成了三个 IoT 组件的创建:
-- 设备证书
-- 一个安全策略
-- 安全策略与设备证书与事物的关联

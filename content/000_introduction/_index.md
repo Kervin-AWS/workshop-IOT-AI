@@ -5,7 +5,7 @@ draft: false
 weight: 10
 ---
 
-![Image](/images/png/001.png)
+![Image](/images/png/1.png)
 
 在这个实验中，我们将用树莓派来模拟一个 IOT 智能摄像头。
 
