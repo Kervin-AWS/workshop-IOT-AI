@@ -25,7 +25,7 @@
 	"title": "在AWS IOT 上配置 Greengrass组",
 	"tags": [],
 	"description": "",
-	"content": " 部署说明 接下来我们将完成在 AWS IOT 云端的配置，将云端的机器学习模型和 Lambda 推理代码部署到设备端。。\n我们将分别从以下步骤进行部署：\n 3. 创建用于边缘推理的 Lambda 函数   4. 配置Greengrass group   "
+	"content": " 部署说明 接下来我们将完成在 AWS IOT 云端的配置，将云端的机器学习模型和 Lambda 推理代码部署到设备端。\n我们将分别从以下步骤进行部署：\n 3. 创建用于边缘推理的 Lambda 函数   4. 配置Greengrass group   "
 },
 {
 	"uri": "/003_deploy_and_test/",
