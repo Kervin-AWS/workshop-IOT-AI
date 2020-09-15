@@ -9,8 +9,8 @@ weight: 40
 
     [https://greengrass-ml-hands-on-lab.s3.cn-north-1.amazonaws.com.cn/HumanActionDetect.zip](https://greengrass-ml-hands-on-lab.s3.cn-north-1.amazonaws.com.cn/HumanActionDetect.zip)
 
-    解压以后，编辑HumanActionDetect.py文件，在里面将 `you/action` 替换成你自己的 topic，比如 `edwin/action`，并保存文件。
-    ![Image](/images/png/11.png)
+    解压以后，编辑HumanActionDetect.py文件，在代码的93行与103行，将 `you/action` 替换成你自己的 topic，比如 `edwin/action`，并保存文件。
+    ![Image](/images/png/001.png)
 
 2. 将 lambda 代码重新打包，注意：请在 HumanActionDetect 目录中运行打包，不要在上层目录中打包。
 

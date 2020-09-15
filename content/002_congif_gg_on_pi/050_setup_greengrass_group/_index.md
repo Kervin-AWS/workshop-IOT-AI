@@ -22,13 +22,13 @@ weight: 50
 3. 在出现的页面中选择”资源“，然后点击添加本地资源，分别创建 4 个本地资源，以使 Lambda 函数具备访问摄像头和文件系统的权限。
     ![Image](/images/png/26.png)
 
-4. 创建摄像头设备资源 webcam，选项如下图所示：
+4. 创建摄像头设备资源 `webcam`，设备路径为`/dev/video0`, 选项如下图所示：
     ![Image](/images/png/27.png)
 
-5. 创建videoCoreInterface资源，选项如下图所示：
+5. 创建`videoCoreInterface资源`, 设备路径为`/dev/vchiq`，选项如下图所示：
     ![Image](/images/png/28.png)
 
-6. 创建videoCoreSharedMemory资源，选项如下图所示： 
+6. 创建`videoCoreSharedMemory`资源，设备路径为`/dev/vcsm`, 选项如下图所示： 
     ![Image](/images/png/29.png)
 
 7. 下载以下链接的机器学习模型（该模型由 Amazon Sagemaker训练出来的）到你的本地电脑：
